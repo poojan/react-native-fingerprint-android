@@ -144,7 +144,8 @@ public class FingerprintModule extends ReactContextBaseJavaModule {
                 isCancelled = true;
             }
             if(promise == null) {
-                throw new AssertionError("Tried to reject the auth promise, but it was already resolved / rejected. This shouldn't happen.");
+                return;
+                // throw new AssertionError("Tried to reject the auth promise, but it was already resolved / rejected. This shouldn't happen.");
             }
             promise.reject(Integer.toString(errorCode), errString.toString());
             promise = null;
@@ -166,7 +167,8 @@ public class FingerprintModule extends ReactContextBaseJavaModule {
         public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
             if(promise == null) {
-                throw new AssertionError("Tried to resolve the auth promise, but it was already resolved / rejected. This shouldn't happen.");
+                return;
+                // throw new AssertionError("Tried to resolve the auth promise, but it was already resolved / rejected. This shouldn't happen.");
             }
             promise.resolve(null);
             promise = null;
